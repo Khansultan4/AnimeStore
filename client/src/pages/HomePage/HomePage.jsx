@@ -9,7 +9,7 @@ export default function HomePage({ user }) {
 
   useEffect(() => {
     axiosInstance
-      .get(`${import.meta.env.VITE_API}/tasks`)
+      .get(`${import.meta.env.VITE_API}/products`)
       .then((res) => {
         setEntries(res.data);
       })

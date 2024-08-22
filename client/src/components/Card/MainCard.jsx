@@ -23,7 +23,7 @@ import axiosInstance from "../../axiosInstance";
 export default function MainCard({ entry, setEntries, user }) {
   const deleteHandler = async () => {
     const res = await axiosInstance.delete(
-      `${import.meta.env.VITE_API}/tasks/${entry.id}`
+      `${import.meta.env.VITE_API}/products/${entry.id}`
     );
     if (res.status === 200) {
       setEntries((prev) => prev.filter((el) => el.id !== entry.id));
@@ -48,7 +48,7 @@ export default function MainCard({ entry, setEntries, user }) {
         <CardFooter>
           <ButtonGroup spacing="2">
             <Button variant="solid" colorScheme="blue">
-              Подробнее
+              Добавить в корзину
             </Button>
             {entry.userId === user.id && (
             <Popover placement="top" className={styles.popover}>
@@ -61,7 +61,7 @@ export default function MainCard({ entry, setEntries, user }) {
                 <PopoverArrow />
                 <PopoverCloseButton />
                 <PopoverHeader>
-                  Вы действительно хотите удалить запись?
+                  Вы действительно хотите удалить товар?
                 </PopoverHeader>
                 <PopoverBody>
                   <Button

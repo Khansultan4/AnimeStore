@@ -14,7 +14,7 @@ export default function Form({ setEntries, user }) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const res = await axiosInstance.post(`${VITE_API}/tasks`, inputs);
+    const res = await axiosInstance.post(`${VITE_API}/products`, inputs);
     if (res.status === 200) {
       setEntries((prev) => [...prev, res.data]);
       setInputs({ name: '', description: '' });
@@ -23,15 +23,23 @@ export default function Form({ setEntries, user }) {
 
   return (
     <form onSubmit={submitHandler} className={styles.wrapper}>
-      <h3 className={styles.head}>Добавь своего кита:</h3>
-      <div className={styles.inputs}>
+      <h3 className={styles.head}>Добавь свой товар:</h3>
+      
+      <div className={styles.inputs} >
         <Input
           onChange={changeHandler}
           borderColor='#3f3e3e'
           name='name'
           value={inputs.name}
-          placeholder='Имя'
+          placeholder='Название'
         />
+        <Input
+         onChange={changeHandler}
+         borderColor='#3f3e3e'
+         name='image'
+         value={"inputs.image"}
+         placeholder='Изображение'
+        /> 
         <Input
           onChange={changeHandler}
           borderColor='#3f3e3e'
@@ -39,6 +47,14 @@ export default function Form({ setEntries, user }) {
           value={inputs.description}
           placeholder='Описание'
         />
+
+        <Input
+          onChange={changeHandler}
+          borderColor='#3f3e3e'
+          name='price'
+          value={'inputs.price'}
+          placeholder='Стоимость'
+        /> 
       </div>
       {user.username ? (
       <div className={styles.btns}>

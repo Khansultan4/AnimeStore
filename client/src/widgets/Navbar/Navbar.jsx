@@ -18,10 +18,10 @@ export default function Navbar({ user, setUser }) {
 
   return (
     <div className={styles.wrapper}>
-      <div>
-        <button onClick={() => navigate(-1)}>⬅️</button>
-        <button onClick={() => navigate(+1)}>➡️</button>
-      </div>
+      <img onClick={() => navigate('/')}
+            className={styles.logo}
+            src="../../../public/tanjiro.svg"
+          ></img>
       <div className={styles.left}>
         <Link to='/'>На главную</Link>
       </div>

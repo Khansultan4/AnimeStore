@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { Task } = require('../../db/models');
+const { Product } = require('../../db/models');
 const { verifyAccessToken } = require('../../middlewares/verifyToken');
 
 router
   .get('/', async (req, res) => {
     try {
-      const entries = await Task.findAll();
+      const entries = await Product.findAll();
       res.json(entries);
     } catch (error) {
       console.error(error);
@@ -17,7 +17,7 @@ router
     const { user } = res.locals;
 
     try {
-      const entry = await Task.create({
+      const entry = await Product.create({
         name,
         description,
         userId: user.id,
@@ -32,9 +32,9 @@ router
     const { id } = req.params;
     const { user } = res.locals;
     try {
-      const task = await Task.findOne({ where: { id } });
-      if (task.userId === user.id) {
-        task.destroy();
+      const product = await Product.findOne({ where: { id } });
+      if (product.userId === user.id) {
+        product.destroy();
         res.sendStatus(200);
       } else {
         res.status(400).json({ message: 'У вас нет прав на удаление' });

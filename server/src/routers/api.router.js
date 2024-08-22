@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const tasksRouter = require('./tasks.api.router');
+const productsRouter = require('./products.api.router');
 const authRouter = require('./auth.router');
 const tokenRouter = require('./token.router');
 
-router.use('/tasks', tasksRouter);
+router.use('/products', productsRouter);
 router.use('/auth', authRouter);
 router.use('/tokens', tokenRouter);
 

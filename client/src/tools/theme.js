@@ -1,10 +1,10 @@
-import { extendTheme } from '@chakra-ui/react';
+import { background, extendTheme, withDefaultProps, withDefaultSize } from '@chakra-ui/react';
 
 const theme = extendTheme({
   styles: {
     global: {
       body: {
-        bg: '#1e1f23',
+        bgImage: '../../../public/back.jpg',
         color: '#f8f9fb',
       },
       a: {

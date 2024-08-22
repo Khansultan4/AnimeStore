@@ -17,7 +17,7 @@ export default function Form({ setEntries, user }) {
     const res = await axiosInstance.post(`${VITE_API}/products`, inputs);
     if (res.status === 200) {
       setEntries((prev) => [...prev, res.data]);
-      setInputs({ name: '', description: '' });
+      setInputs({ name: '', image:'', description: '', price:'' });
     }
   };
 
@@ -37,7 +37,7 @@ export default function Form({ setEntries, user }) {
          onChange={changeHandler}
          borderColor='#3f3e3e'
          name='image'
-         value={"inputs.image"}
+         value={inputs.image}
          placeholder='Изображение'
         /> 
         <Input
@@ -47,12 +47,11 @@ export default function Form({ setEntries, user }) {
           value={inputs.description}
           placeholder='Описание'
         />
-
         <Input
           onChange={changeHandler}
           borderColor='#3f3e3e'
           name='price'
-          value={'inputs.price'}
+          value={inputs.price}
           placeholder='Стоимость'
         /> 
       </div>

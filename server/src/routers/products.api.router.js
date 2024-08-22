@@ -13,13 +13,15 @@ router
     }
   })
   .post('/', verifyAccessToken, async (req, res) => {
-    const { name, description } = req.body;
+    const { name, description, image, price } = req.body;
     const { user } = res.locals;
 
     try {
       const entry = await Product.create({
         name,
+        image,
         description,
+        price,
         userId: user.id,
       });
       res.json(entry);

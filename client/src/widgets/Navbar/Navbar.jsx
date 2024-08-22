@@ -28,6 +28,11 @@ export default function Navbar({ user, setUser }) {
       <div className={styles.right}>
         {user?.username ? (
           <>
+      <Link to='/cart'>
+      <img className={styles.logo}
+            src="../../../public/cart.svg"
+          ></img>
+          </Link>
             <Link to='/'>{user.username}</Link>
             <Link onClick={logoutHandler}>Выйти</Link>
           </>

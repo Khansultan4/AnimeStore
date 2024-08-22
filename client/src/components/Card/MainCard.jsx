@@ -17,6 +17,7 @@ import {
   PopoverBody,
   PopoverArrow,
   PopoverCloseButton,
+  Image
 } from "@chakra-ui/react";
 import axiosInstance from "../../axiosInstance";
 
@@ -39,9 +40,11 @@ export default function MainCard({ entry, setEntries, user }) {
           <Stack mt="3" spacing="3">
             <Heading size="md">{entry?.name}</Heading>
             <Text>{entry?.description}</Text>
+            <Text>{entry?.price}</Text>
+            <Image src={entry?.image} />
           </Stack>
           <Stack mt="3" spacing="3">
-            <Avatar name={entry?.name} />
+            <Avatar name={entry?.username} />
           </Stack>
         </CardBody>
         <Divider />

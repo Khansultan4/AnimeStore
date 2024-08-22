@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import SigninPage from "./pages/SigninPage/SigninPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
+import CartPage from "./pages/CartPage/CartPage";
 import { useState, useEffect } from "react";
 import axiosInstance, { setAccessToken } from "./axiosInstance";
 
@@ -46,10 +47,18 @@ function App() {
             </ProtectedRoute>
           ),
         },
+        {
+          path: "/cart",
+          element: (
+            <ProtectedRoute authUser={user.username} redirectTo={"/"}>
+              <CartPage setUser={setUser} />
+            </ProtectedRoute>
+          ),
+        },
       ],
     },
   ]);
-
+  
   return <RouterProvider router={router} />;
 }
 

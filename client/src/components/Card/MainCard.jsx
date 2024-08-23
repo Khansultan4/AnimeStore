@@ -1,6 +1,6 @@
 import styles from "./MainCard.module.css";
+import { useState, useEffect } from 'react';
 import {
-  Avatar,
   Card,
   CardBody,
   Stack,
@@ -21,7 +21,31 @@ import {
 } from "@chakra-ui/react";
 import axiosInstance from "../../axiosInstance";
 
-export default function MainCard({ entry, setEntries, user }) {
+export default function MainCard({ entry, setEntries, user, setProductsInCart }) {
+  console.log('RRRRRRRRuser', entry?.userId);
+  const [inCart, setInCart] = useState(false);
+
+const userId = entry?.userId;
+const productId = entry?.id;
+
+  const addHandler = async (e) => {
+    e.preventDefault();
+      const res = await axiosInstance.post(`${import.meta.env.VITE_API}/cart`, {userId, productId});
+      console.log('22222', res);
+
+    if (res.status === 200) {
+      axiosInstance
+      .get(`${import.meta.env.VITE_API}/cart/`)
+      .then((res) => {
+        setProductsInCart(res.data);
+        
+  
+      })
+      .catch((err) => console.error(err));
+      setInCart((prev) => (!prev)); 
+    }
+  };
+
   const deleteHandler = async () => {
     const res = await axiosInstance.delete(
       `${import.meta.env.VITE_API}/products/${entry.id}`
@@ -30,6 +54,7 @@ export default function MainCard({ entry, setEntries, user }) {
       setEntries((prev) => prev.filter((el) => el.id !== entry.id));
     }
   };
+  
 
   console.log(entry.userId === user.id)
 
@@ -40,19 +65,30 @@ export default function MainCard({ entry, setEntries, user }) {
           <Stack mt="3" spacing="3">
             <Heading size="md">{entry?.name}</Heading>
             <Text>{entry?.description}</Text>
-            <Text>{entry?.price}</Text>
+            <Text size="lg">{entry?.price}{' руб.'}</Text>
             <Image src={entry?.image} />
-          </Stack>
-          <Stack mt="3" spacing="3">
-            <Avatar name={entry?.username} />
           </Stack>
         </CardBody>
         <Divider />
         <CardFooter>
           <ButtonGroup spacing="2">
-            <Button variant="solid" colorScheme="blue">
+          {inCart === false ? (
+            <Button 
+            onClick={addHandler}
+            variant="solid" colorScheme="blue">
               Добавить в корзину
             </Button>
+            ) : 
+            null
+          }
+          {inCart === true ? (
+          <Button 
+           variant='outline' colorScheme='green'>
+            Товар в корзине
+            </Button> 
+            ) : 
+            null
+          }
             {entry.userId === user.id && (
             <Popover placement="top" className={styles.popover}>
               <PopoverTrigger>

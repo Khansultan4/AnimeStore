@@ -1,7 +1,7 @@
 import axiosInstance, { setAccessToken } from '../../axiosInstance';
 import styles from './Navbar.module.css';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { Avatar, Stack } from "@chakra-ui/react";
 export default function Navbar({ user, setUser }) {
   const navigate = useNavigate();
 
@@ -29,16 +29,22 @@ export default function Navbar({ user, setUser }) {
         {user?.username ? (
           <>
       <Link to='/cart'>
-      <img className={styles.logo}
+      <img className={styles.cart}
             src="../../../public/cart.svg"
           ></img>
           </Link>
-            <Link to='/'>{user.username}</Link>
+          <Stack mt="-1" >
+            <Avatar name={user?.username} />
+          </Stack >
+            <Link to='/' >{user.username}</Link>
             <Link onClick={logoutHandler}>Выйти</Link>
           </>
         ) : (
           <>
             <Link to='/signin'>Войти</Link>
+            <Stack mt="-1" >
+            <Avatar name={user?.username} />
+          </Stack>
             <Link to='/signup'>Регистрация</Link>
           </>
         )}

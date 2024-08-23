@@ -1,25 +1,33 @@
 import { useState, useEffect } from 'react';
-import Form from '../../components/Form/Form';
-import List from '../../components/List/List';
+// import Form from '../../components/Form/Form';
 import styles from './CartPage.module.css';
 import axiosInstance from '../../axiosInstance';
+import { Heading } from '@chakra-ui/react';
+import ListCart from '../../components/List/ListCart';
+export default function CartPage({ user, productsInCart, setProductsInCart }) {
 
-export default function CartPage({ user }) {
-  const [entries, setEntries] = useState([]);
 
   useEffect(() => {
+   
     axiosInstance
-      .get(`${import.meta.env.VITE_API}/products`)
-      .then((res) => {
-        setEntries(res.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+    .get(`${import.meta.env.VITE_API}/cart`)
+    .then((res) => {
+      setProductsInCart(res.data);
+      console.log('33333', res.data);
+      
+    })
+    .catch((err) => console.error(err));
+}, []);
 
-  return (
-    <div className={styles.wrapper}>
-      <Form user={user} setEntries={setEntries} />
-      <List user={user} data={entries} setEntries={setEntries} />
-    </div>
-  );
+return (
+
+  <>
+<div className={styles.wrapper}>  
+<Heading as='h3' size='xl'>
+Корзина
+</Heading> <br/><br/>
+    <ListCart productsInCart={productsInCart} setProductsInCart={setProductsInCart} user={user}/>      
+  </div>
+</>
+);
 }

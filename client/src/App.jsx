@@ -12,6 +12,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const [user, setUser] = useState({});
+  const [productsInCart, setProductsInCart] = useState([]);
 
   useEffect(() => {
     axiosInstance
@@ -50,8 +51,8 @@ function App() {
         {
           path: "/cart",
           element: (
-            <ProtectedRoute authUser={user.username} redirectTo={"/"}>
-              <CartPage setUser={setUser} />
+            <ProtectedRoute authUser={user.username} redirectTo={"/cart"}>
+              <CartPage setUser={setUser} user={user} productsInCart={productsInCart} setProductsInCart={setProductsInCart} />
             </ProtectedRoute>
           ),
         },

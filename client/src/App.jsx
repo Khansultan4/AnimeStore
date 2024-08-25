@@ -13,6 +13,19 @@ import ProtectedRoute from "./ProtectedRoute";
 function App() {
   const [user, setUser] = useState({});
   const [productsInCart, setProductsInCart] = useState([]);
+  
+  useEffect(() => {
+   
+    axiosInstance
+    .get(`${import.meta.env.VITE_API}/cart`)
+    .then((res) => {
+      setProductsInCart(res.data);
+      console.log('33333', res.data);
+      
+    })
+    .catch((err) => console.error(err));
+}, []);
+console.log('111123',productsInCart);
 
   useEffect(() => {
     axiosInstance
@@ -22,15 +35,15 @@ function App() {
         setAccessToken(res.data.accessToken);
       });
   }, []);
-
+  console.log('55555',productsInCart);
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Root user={user} setUser={setUser} />,
+      element: <Root user={user} setUser={setUser} productsInCart={productsInCart}/>,
       children: [
         {
           path: "/",
-          element: <HomePage user={user} />,
+          element: <HomePage user={user} productsInCart={productsInCart} setProductsInCart={setProductsInCart} />,
         },
         {
           path: "/signin",
@@ -51,9 +64,9 @@ function App() {
         {
           path: "/cart",
           element: (
-            <ProtectedRoute authUser={user.username} redirectTo={"/cart"}>
-              <CartPage setUser={setUser} user={user} productsInCart={productsInCart} setProductsInCart={setProductsInCart} />
-            </ProtectedRoute>
+            // <ProtectedRoute authUser={user.username} redirectTo={"/cart"}>
+              <CartPage  user={user} productsInCart={productsInCart} setProductsInCart={setProductsInCart} />
+            // </ProtectedRoute>
           ),
         },
       ],

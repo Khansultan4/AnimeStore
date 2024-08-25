@@ -13,18 +13,12 @@ console.log('122',user.id);
   return (
 
     <div className={styles.wrapper}>
-      {/* {productsInCart?.map((el) => 
-    {el.userId !== user.id ? ( */}
-      {productsInCart[2]?.userId === user.id && (
       <SimpleGrid columns={3} spacingX='40px' spacingY='2px'>
       {productsInCart.length
         ? productsInCart?.map((el) => 
          <CartCard key={el.id} productInCart={ el } setProductsInCart={setProductsInCart} user={user}/>)
         : null}
       </SimpleGrid>
-      )}
-      {/* // ): null}
-      // )} */}
     </div>
 
   );

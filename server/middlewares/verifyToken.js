@@ -16,7 +16,7 @@ const verifyRefreshToken = (req, res, next) => {
 const verifyAccessToken = (req, res, next) => {
   try {
     const accessToken = req.headers.authorization.split(' ')[1];
-    console.log(accessToken);
+    console.log('accessToken',accessToken);
     const { user } = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
     res.locals.user = user;
 

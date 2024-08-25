@@ -1,12 +1,17 @@
 const router = require('express').Router();
+const { where } = require('sequelize');
 const { Cart, Product } = require('../../db/models');
 const { verifyAccessToken } = require('../../middlewares/verifyToken');
+const { verifyRefreshToken } = require('../../middlewares/verifyToken');
 
 router
 
-  .get('/', async (req, res) => {
+  .get('/',verifyRefreshToken, async (req, res) => {
+    const { user } = res.locals;
+    console.log('1232',user);
+    
     try {
-      const productsInCart = await Cart.findAll({include: {model: Product}});
+      const productsInCart = await Cart.findAll({include: {model: Product},where:{ userId: user.id}});
       console.log("1111111", productsInCart);
       res.json(productsInCart.sort((a, b) => a.id - b.id));
       

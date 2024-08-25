@@ -37,9 +37,11 @@ router
   .delete('/:id', verifyAccessToken, async (req, res) => {
     const { id } = req.params;
     const { user } = res.locals;
+    console.log(user);
+    
     try {
       const task = await Cart.findOne({ where: { id } });
-      if (task.userId === user.user?.id) {
+      if (task.userId === user.id) {
         task.destroy();
         res.sendStatus(200);
       } else {

@@ -21,8 +21,8 @@ import {
 } from "@chakra-ui/react";
 import axiosInstance from "../../axiosInstance";
 
-export default function MainCard({ entry, setEntries, user, setProductsInCart }) {
-  console.log('RRRRRRRRuser', entry?.userId);
+export default function MainCard({ entry, setEntries, user, setProductsInCart, productsInCart }) {
+  console.log('RRRyyy', entry?.userId);
   const [inCart, setInCart] = useState(false);
 
 const userId = entry?.userId;
@@ -31,14 +31,13 @@ const productId = entry?.id;
   const addHandler = async (e) => {
     e.preventDefault();
       const res = await axiosInstance.post(`${import.meta.env.VITE_API}/cart`, {userId, productId});
-      console.log('22222', res);
+      console.log('22222', res.data);
 
     if (res.status === 200) {
       axiosInstance
       .get(`${import.meta.env.VITE_API}/cart/`)
       .then((res) => {
         setProductsInCart(res.data);
-        
   
       })
       .catch((err) => console.error(err));
@@ -57,6 +56,7 @@ const productId = entry?.id;
   
 
   console.log(entry.userId === user.id)
+console.log('1234',productsInCart);
 
   return (
     <div className={styles.wrapper}>
@@ -72,7 +72,8 @@ const productId = entry?.id;
         <Divider />
         <CardFooter>
           <ButtonGroup spacing="2">
-          {inCart === false ? (
+        
+          {inCart === false && entry.userId !== user.id ? (
             <Button 
             onClick={addHandler}
             variant="solid" colorScheme="blue">

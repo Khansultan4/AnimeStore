@@ -17,7 +17,8 @@ import {
 import axiosInstance from '../../axiosInstance';
 
 export default function CartCard({ productInCart, setProductsInCart, user }) {  
-console.log('TTTTTTTTTTTTTTTT',productInCart.id);
+// console.log('wdwdwdw',productInCart.id);
+
       
 
 const deleteHandler = async (e) => {
@@ -37,23 +38,22 @@ const deleteHandler = async (e) => {
   return (
     
     
-    <Box bg='#5988a1' marginLeft={20} marginBottom={20}>
-    <Card maxW='sm'>
-      <CardBody>
+    <Box bg='#313133' marginLeft={20} marginBottom={20}>
+    <Card bg='#313133' width={350} height={500} maxW='sm'>
+      <CardBody >
       <Heading size='md'>{productInCart.Product.name}</Heading>
-      <Text>
+      <Text >
           {`Цена: ${productInCart.Product.price} рублей`} 
           </Text>
         <div className={styles.wrapper}>
         <Image
-          src={`${productInCart.Product.img}`}
-          alt='Green double couch with wooden legs'
+          src={`${productInCart.Product.image}`}
           borderRadius='lg'
         />
         </div>
         <Stack mt='6' spacing='3'>          
           <Text>          
-          {`${productInCart.Product.description.slice(0, 50)}...`} 
+          {`${productInCart.Product.description}`} 
           </Text>
           
           
@@ -68,7 +68,7 @@ const deleteHandler = async (e) => {
           <Button variant='solid' colorScheme='blue'>
             Оплатить 
           </Button>
-          </Link>                
+          </Link>
             <Button onClick={deleteHandler} variant='ghost' colorScheme='blue'>
             Удалить из корзины
             </Button> 

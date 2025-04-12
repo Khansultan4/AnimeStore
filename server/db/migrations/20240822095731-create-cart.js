@@ -15,6 +15,7 @@ module.exports = {
           model: {
             tableName: 'Users',
           },
+          onDelete: 'CASCADE',
           key: 'id',
         },
       },
@@ -26,6 +27,7 @@ module.exports = {
           },
           key: 'id',
         },
+          onDelete: 'CASCADE'
       },
       
       createdAt: {

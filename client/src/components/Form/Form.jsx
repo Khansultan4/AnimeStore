@@ -62,7 +62,7 @@ export default function Form({ setEntries, user }) {
         </Button>
       </div>
       ) : (
-        <h3 style={{color: 'red'}}>Пожалуйста, авторизуйтесь!</h3>
+        <h3>Для добавления товара, авторизуйтесь</h3>
       )}
     </form>
   );

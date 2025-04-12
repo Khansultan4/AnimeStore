@@ -36,8 +36,6 @@ const deleteHandler = async (e) => {
 
 
   return (
-    
-    
     <Box bg='#313133' marginLeft={20} marginBottom={20}>
     <Card bg='#313133' width={350} height={500} maxW='sm'>
       <CardBody >

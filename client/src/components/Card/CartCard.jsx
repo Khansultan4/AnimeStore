@@ -15,6 +15,7 @@ import {
   Image
 } from '@chakra-ui/react';
 import axiosInstance from '../../axiosInstance';
+import { px } from 'framer-motion';
 
 export default function CartCard({ productInCart, setProductsInCart, user }) {  
 // console.log('wdwdwdw',productInCart.id);
@@ -37,7 +38,7 @@ const deleteHandler = async (e) => {
 
   return (
     <Box bg='#313133' marginLeft={20} marginBottom={20}>
-    <Card bg='#313133' width={350} height={500} maxW='sm'>
+    <Card bg='#313133' width={350}  maxW='sm'>
       <CardBody >
       <Heading size='md'>{productInCart.Product.name}</Heading>
       <Text >
@@ -60,7 +61,7 @@ const deleteHandler = async (e) => {
         </Stack>
       </CardBody>
       <Divider />
-      <CardFooter>
+      <CardFooter >
         <ButtonGroup spacing='2'>      
           <Link >
           <Button variant='solid' colorScheme='blue'>

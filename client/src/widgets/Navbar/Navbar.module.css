@@ -7,14 +7,16 @@
   backdrop-filter: blur(10px);
   background-color: #1695cc;
   
+  
   display: flex;
-  justify-content: space-between;
+  justify-content: none;
   align-items: center;
 
   padding: 0 20px;
 }
 
-.left, .right {
+.left {
+  padding-left: 5%;
   width: 300px;
   height: 35px;
   display: flex;
@@ -34,3 +36,14 @@
 .avatar{
 size: 10px;
 }
+.right {
+  padding-left: 65%;
+  width: 1500px;
+  height: 35px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .text {
+  padding-left: 5%; 
+} */

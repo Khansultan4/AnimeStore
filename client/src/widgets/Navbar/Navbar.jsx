@@ -2,9 +2,9 @@ import axiosInstance, { setAccessToken } from '../../axiosInstance';
 import styles from './Navbar.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { Avatar, Stack } from "@chakra-ui/react";
-export default function Navbar({ user, setUser, productsInCart }) {
+export default function Navbar({ user, setUser, productsInCart,setProductsInCart }) {
   const navigate = useNavigate();
-console.log(productsInCart);
+
 
   const logoutHandler = async () => {
     const response = await axiosInstance.get(
@@ -13,6 +13,7 @@ console.log(productsInCart);
     if (response.status === 200) {
       setUser({});
       setAccessToken('');
+      setProductsInCart([]);
       navigate('/');
     }
   };
@@ -37,7 +38,7 @@ console.log(productsInCart);
           </Link>
           <span>{`Товаров: ${productsInCart?.length}`}</span>
           </div>
-          <Stack mt="-1" >
+          <Stack  mt="-1" >
             <Avatar name={user?.username} />
           </Stack >
             <Link to='/' >{user.username}</Link>

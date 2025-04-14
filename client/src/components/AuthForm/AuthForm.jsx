@@ -4,7 +4,7 @@ import { Input, Button } from '@chakra-ui/react';
 import axiosInstance, { setAccessToken } from '../../axiosInstance';
 import { useNavigate } from 'react-router-dom';
 
-export default function AuthForm({ title, type = 'signin', setUser }) {
+export default function AuthForm({ title, type = 'signin', setUser, setProductsInCart }) {
   const [inputs, setInputs] = useState({});
   const navigate = useNavigate();
 
@@ -20,8 +20,12 @@ export default function AuthForm({ title, type = 'signin', setUser }) {
         `${import.meta.env.VITE_API}/auth/${type}`,
         inputs
       );
+      const cart = await axiosInstance.get(
+        `${import.meta.env.VITE_API}/cart`,
+      );
       setUser(response.data.user);
       setAccessToken(response.data.accessToken);
+      setProductsInCart(cart.data);
 
       navigate('/');
     } catch (error) {

@@ -39,7 +39,7 @@ console.log('111123',productsInCart);
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Root user={user} setUser={setUser} productsInCart={productsInCart}/>,
+      element: <Root user={user} setUser={setUser} productsInCart={productsInCart} setProductsInCart={setProductsInCart}/>,
       children: [
         {
           path: "/",
@@ -49,7 +49,7 @@ console.log('111123',productsInCart);
           path: "/signin",
           element: (
             <ProtectedRoute authUser={user.username} redirectTo={"/"}>
-              <SigninPage setUser={setUser} />
+              <SigninPage setProductsInCart={setProductsInCart} setUser={setUser} />
             </ProtectedRoute>
           ),
         },
@@ -57,7 +57,7 @@ console.log('111123',productsInCart);
           path: "/signup",
           element: (
             <ProtectedRoute authUser={user.username} redirectTo={"/"}>
-              <SignupPage setUser={setUser} />
+              <SignupPage setProductsInCart={setProductsInCart} setUser={setUser} />
             </ProtectedRoute>
           ),
         },

@@ -3,11 +3,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #ffffff;
+  background-color: #313133;
+
 
   width: 40vw;
   
   padding: 20px;
-  border: 1px solid #3f3e3e ;
+  border: 2px solid #ffffff ;
   border-radius: 10px;
 }
 
@@ -27,4 +30,9 @@
 
 .btns {
   margin-top: 20px;
+}
+
+.down {
+  margin-top: 20px;
+  color: red;
 }

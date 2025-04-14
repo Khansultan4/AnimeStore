@@ -28,28 +28,28 @@ export default function Form({ setEntries, user }) {
       <div className={styles.inputs} >
         <Input
           onChange={changeHandler}
-          borderColor='#3f3e3e'
+          borderColor='#ffffff'
           name='name'
           value={inputs.name}
           placeholder='Название'
         />
         <Input
          onChange={changeHandler}
-         borderColor='#3f3e3e'
+         borderColor='#ffffff'
          name='image'
          value={inputs.image}
          placeholder='Изображение'
         /> 
         <Input
           onChange={changeHandler}
-          borderColor='#3f3e3e'
+          borderColor='#ffffff'
           name='description'
           value={inputs.description}
           placeholder='Описание'
         />
         <Input
           onChange={changeHandler}
-          borderColor='#3f3e3e'
+          borderColor='#ffffff'
           name='price'
           value={inputs.price}
           placeholder='Стоимость'
@@ -62,7 +62,7 @@ export default function Form({ setEntries, user }) {
         </Button>
       </div>
       ) : (
-        <h3>Для добавления товара, авторизуйтесь</h3>
+        <h3 className={styles.down}>Чтобы добавить товар, авторизуйтесь</h3>
       )}
     </form>
   );

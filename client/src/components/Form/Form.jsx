@@ -57,12 +57,12 @@ export default function Form({ setEntries, user }) {
       </div>
       {user.username ? (
       <div className={styles.btns}>
-        <Button type='submit' colorScheme='blue'>
+        <Button type='submit' colorScheme='gray'>
           Создать
         </Button>
       </div>
       ) : (
-        <h3 className={styles.down}>Чтобы добавить товар, авторизуйтесь</h3>
+        <h3 className={styles.down}>Авторизуйтесь для добавления товара</h3>
       )}
     </form>
   );

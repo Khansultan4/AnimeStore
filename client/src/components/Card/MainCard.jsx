@@ -17,13 +17,16 @@ import {
   PopoverBody,
   PopoverArrow,
   PopoverCloseButton,
-  Image
+  Image,
+  Link,
+  Box
 } from "@chakra-ui/react";
 import axiosInstance from "../../axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 export default function MainCard({ entry, setEntries, user, setProductsInCart, productsInCart }) {
-  console.log('RRRyyy', entry?.userId);
-  const [inCart, setInCart] = useState(false);
+const navigate = useNavigate();
+const [inCart, setInCart] = useState(false);
 
 const userId = entry?.userId;
 const productId = entry?.id;
@@ -31,7 +34,7 @@ const productId = entry?.id;
   const addHandler = async (e) => {
     e.preventDefault();
       const res = await axiosInstance.post(`${import.meta.env.VITE_API}/cart`, {userId, productId});
-      console.log('22222', res.data);
+      
 
     if (res.status === 200) {
       axiosInstance
@@ -56,67 +59,75 @@ const productId = entry?.id;
   
 
   console.log(entry.userId === user.id)
-console.log('1234',productsInCart);
+// console.log('1234',productsInCart[1].productId);
+console.log(entry.id);
+
 
   return (
     <div className={styles.wrapper}>
-      <Card bgColor="#313133" className={styles.container} maxW="sm">
-        <CardBody className={styles.body}>
-          <Stack mt="3" spacing="3">
-            <Heading size="md">{entry?.name}</Heading>
-            <Text>{entry?.description}</Text>
-            <Text size="lg">{entry?.price}{' руб.'}</Text>
-            <Image src={entry?.image} />
+      <Card bgColor="#313133" width={350} height="100%" className={styles.container} maxW="sm" overflow='hidden'>
+        <CardBody className={styles.body} width={350}>
+          <Stack mt='6' spacing='3' width='300px' overflow='hidden'>
+
+              <Heading size="md">{entry?.name}</Heading>
+            <Image 
+            maxWidth='300px'
+            height='60%'
+            src={entry?.image} 
+ />
+
+              <Text >{entry?.description}</Text>
+
+
+              <Text size="lg">{entry?.price}{' руб.'}</Text>
           </Stack>
         </CardBody>
         <Divider />
         <CardFooter>
-          <ButtonGroup spacing="2">
-        
-          {inCart === false && entry.userId !== user.id ? (
-            <Button 
-            onClick={addHandler}
-            variant="solid" colorScheme="blue">
-              Добавить в корзину
-            </Button>
-            ) : 
-            null
-          }
-          {inCart === true ? (
-          <Button 
-           variant='outline' colorScheme='green'>
+  {user.username ? (
+    <div>
+      <ButtonGroup spacing="2">
+        {productsInCart?.some((el) => el.productId === entry.id) ? (
+          <Button onClick={() => navigate('/cart')} variant='outline' colorScheme='green'>
             Товар в корзине
-            </Button> 
-            ) : 
-            null
-          }
-            {entry.userId === user.id && (
-            <Popover placement="top" className={styles.popover}>
-              <PopoverTrigger>
-                  <Button variant="ghost" colorScheme="blue">
-                    Удалить
-                  </Button>
-              </PopoverTrigger>
-              <PopoverContent>
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverHeader>
-                  Вы действительно хотите удалить товар?
-                </PopoverHeader>
-                <PopoverBody>
-                  <Button
-                    onClick={deleteHandler}
-                    variant="ghost"
-                    colorScheme="blue"
-                  >
-                    Удалить
-                  </Button>
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
-            )}
-          </ButtonGroup>
-        </CardFooter>
+          </Button>
+        ) : (
+          <Button 
+            onClick={addHandler}
+            variant="solid" colorScheme="gray">
+            Добавить в корзину
+          </Button>
+        )}
+        {entry.userId === user.id && (
+          <Popover placement="top" className={styles.popover}>
+            <PopoverTrigger>
+              <Button colorScheme="gray">
+                Удалить
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverHeader>
+                Вы действительно хотите удалить товар?
+              </PopoverHeader>
+              <PopoverBody>
+                <Button
+                  onClick={deleteHandler}
+                  colorScheme="gray"
+                >
+                  Удалить
+                </Button>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+        )}
+      </ButtonGroup>
+    </div>
+  ) : (
+    <h3></h3>
+  )}
+</CardFooter>
       </Card>
     </div>
   );

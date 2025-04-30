@@ -1,5 +1,4 @@
-import { background, extendTheme, withDefaultProps, withDefaultSize } from '@chakra-ui/react';
-
+import { extendTheme } from '@chakra-ui/react';
 
 const theme = extendTheme({
   styles: {
@@ -7,8 +6,8 @@ const theme = extendTheme({
       body: {
         bgImage: '../../../public/back5.png',
         color: '#f8f9fb',
-        bgPosition: 'center',  
-        bgSize: 'cover', 
+        bgPosition: 'center',
+        bgSize: 'cover',
         bgAttachment: 'fixed',
       },
       a: {
@@ -25,6 +24,18 @@ const theme = extendTheme({
       },
       p: {
         color: '#f8f9fb',
+      },
+    },
+
+  },
+  components: {
+    Button: {
+      variants: {
+        surface: {
+          bg: 'gray',
+          color: 'white',
+          _hover: { bg: 'green.300' },
+        },
       },
     },
   },

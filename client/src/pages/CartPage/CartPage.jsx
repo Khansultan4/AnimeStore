@@ -10,7 +10,7 @@ export default function CartPage({ user, productsInCart, setProductsInCart }) {
 return (
 
 <div className={styles.wrapper}>  
-<Heading as='h3' size='xl'>
+<Heading marginTop='30px' as='h3' size='xl'>
 Корзина
 </Heading> <br/><br/>
     <ListCart productsInCart={productsInCart} setProductsInCart={setProductsInCart} user={user}/>      

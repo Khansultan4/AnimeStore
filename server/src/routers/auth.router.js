@@ -43,11 +43,16 @@ router
     const { email, password } = req.body;
 
     if (!(email && password)) {
-      res.status(400).json({ message: 'All fields are required' });
+      res.status(400).json({ message: 'All fields are required' }).send();
+      return
     }
 
     const user = await User.findOne({ where: { email } });
-
+    if(!user) {
+      res.status(400).json({ message: 'User is not found' }).send();
+      return
+    }
+    
     const isCorrectPassword = await bcrypt.compare(password, user.password);
 
     if (!isCorrectPassword) {

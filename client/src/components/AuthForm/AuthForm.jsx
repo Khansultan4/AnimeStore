@@ -41,7 +41,7 @@ export default function AuthForm({ title, type = 'signin', setUser, setProductsI
           <>
             <Input
               onChange={changeHandler}
-              borderColor='#3f3e3e'
+              borderColor='#ffffff'
               type='email'
               name='email'
               value={inputs?.email}
@@ -49,7 +49,7 @@ export default function AuthForm({ title, type = 'signin', setUser, setProductsI
             />
             <Input
               onChange={changeHandler}
-              borderColor='#3f3e3e'
+              borderColor='#ffffff'
               type='password'
               name='password'
               value={inputs?.password}
@@ -61,14 +61,14 @@ export default function AuthForm({ title, type = 'signin', setUser, setProductsI
           <>
             <Input
               onChange={changeHandler}
-              borderColor='#3f3e3e'
+              borderColor='#ffffff'
               name='username'
               value={inputs?.username}
               placeholder='Имя пользователя'
             />
             <Input
               onChange={changeHandler}
-              borderColor='#3f3e3e'
+              borderColor='#ffffff'
               type='email'
               name='email'
               value={inputs?.email}
@@ -76,7 +76,7 @@ export default function AuthForm({ title, type = 'signin', setUser, setProductsI
             />
             <Input
               onChange={changeHandler}
-              borderColor='#3f3e3e'
+              borderColor='#ffffff'
               type='password'
               name='password'
               value={inputs?.password}
@@ -87,12 +87,12 @@ export default function AuthForm({ title, type = 'signin', setUser, setProductsI
       </div>
       <div className={styles.btns}>
         {type === 'signin' && (
-          <Button type='submit' colorScheme='blue'>
+          <Button type='submit' colorScheme='gray'>
             Вход
           </Button>
         )}
         {type === 'signup' && (
-          <Button type='submit' colorScheme='blue'>
+          <Button type='submit' colorScheme='gray'>
             Регистрация
           </Button>
         )}

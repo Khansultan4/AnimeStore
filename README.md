@@ -6,15 +6,15 @@ Fullstack web application for an anime store.
 
 ### Product Catalog
 
-![Product Catalog](./docs/screenshots/catalog.png)
+![Product Catalog](docs/screenshots/catalog.png)
 
 ### Shopping Cart
 
-![Shopping Cart](./docs/screenshots/cart.png)
+![Shopping Cart](docs/screenshots/cart.png)
 
 ### Authentication
 
-![Login](./docs/screenshots/login.png)
+![Login](docs/screenshots/login.png)
 
 ## 🛠 Tech Stack
 

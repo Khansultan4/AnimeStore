@@ -20,12 +20,11 @@ function App() {
     .get(`${import.meta.env.VITE_API}/cart`)
     .then((res) => {
       setProductsInCart(res.data);
-      console.log('33333', res.data);
-      
+  
     })
     .catch((err) => console.error(err));
 }, []);
-console.log('111123',productsInCart);
+
 
   useEffect(() => {
     axiosInstance
@@ -35,7 +34,7 @@ console.log('111123',productsInCart);
         setAccessToken(res.data.accessToken);
       });
   }, []);
-  console.log('55555',productsInCart);
+ 
   const router = createBrowserRouter([
     {
       path: "/",

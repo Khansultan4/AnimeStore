@@ -8,7 +8,7 @@ const verifyRefreshToken = (req, res, next) => {
 
     next();
   } catch (error) {
-    console.log('Invalid refresh', error);
+    console.error('Invalid refresh', error);
     res.status(400).json({ message: 'Invalid refresh' });
   }
 };
@@ -16,13 +16,12 @@ const verifyRefreshToken = (req, res, next) => {
 const verifyAccessToken = (req, res, next) => {
   try {
     const accessToken = req.headers.authorization.split(' ')[1];
-    console.log('accessToken',accessToken);
     const { user } = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
     res.locals.user = user;
 
     next();
   } catch (error) {
-    console.log('Invalid access');
+    console.error('Invalid access');
     res.status(400).json({ message: 'Invalid access' });
   }
 };

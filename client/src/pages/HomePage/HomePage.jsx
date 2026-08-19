@@ -6,7 +6,6 @@ import axiosInstance from '../../axiosInstance';
 
 export default function HomePage({ user, productsInCart, setProductsInCart }) {
   const [entries, setEntries] = useState([]);
-console.log('4444',productsInCart);
 
   useEffect(() => {
     axiosInstance

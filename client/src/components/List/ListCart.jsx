@@ -5,11 +5,6 @@ import { SimpleGrid } from '@chakra-ui/react';
 import axiosInstance from '../../axiosInstance';
 
 export default function ListCart({ productsInCart, setProductsInCart, user }) {
-console.log('1116y5y55123',productsInCart[2]?.userId);
-console.log('122',user.id);
-
-
-
   return (
 
     <div className={styles.wrapper}>

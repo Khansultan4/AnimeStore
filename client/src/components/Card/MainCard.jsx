@@ -58,10 +58,6 @@ const productId = entry?.id;
   };
   
 
-  console.log(entry.userId === user.id)
-// console.log('1234',productsInCart[1].productId);
-console.log(entry.id);
-
 
   return (
     <div className={styles.wrapper}>

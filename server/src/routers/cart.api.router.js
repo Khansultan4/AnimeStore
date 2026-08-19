@@ -8,11 +8,8 @@ router
 
   .get('/',verifyRefreshToken, async (req, res) => {
     const { user } = res.locals;
-    console.log('1232',user);
-    
     try {
       const productsInCart = await Cart.findAll({include: {model: Product},where:{ userId: user.id}});
-      console.log("1111111", productsInCart);
       res.json(productsInCart.sort((a, b) => a.id - b.id));
       
     } catch (error) {
@@ -24,9 +21,6 @@ router
   .post('/', verifyAccessToken, async (req, res) => {
     const { productId } = req.body;  
     const { user } = res.locals;
-    console.log(user);
-    
-          
     try {
       const entry = await Cart.create({        
         userId: user.id,
@@ -42,8 +36,7 @@ router
   .delete('/:id', verifyAccessToken, async (req, res) => {
     const { id } = req.params;
     const { user } = res.locals;
-    console.log(user);
-    
+
     try {
       const task = await Cart.findOne({ where: { id } });
       if (task.userId === user.id) {
